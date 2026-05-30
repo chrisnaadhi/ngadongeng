@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import DongengCard from '$lib/components/DongengCard.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { DongengStory } from '$lib/types';
@@ -23,7 +24,7 @@
 				<p class="label text-tanah mb-2">{sectionLabel}</p>
 				<h2 class="heading text-2xl md:text-3xl">{title}</h2>
 			</div>
-			<Button variant="soft" size="sm" href="/cerita">Lihat semua →</Button>
+			<Button variant="soft" size="sm" href={resolve('/cerita')}>Lihat semua →</Button>
 		</div>
 
 		<!-- Grid -->

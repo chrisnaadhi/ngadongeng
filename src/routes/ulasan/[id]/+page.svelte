@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { ActionData, PageData } from './$types';
 
 	let { data, form }: { data: PageData; form: ActionData } = $props();
@@ -42,7 +43,10 @@
 <div class="space-y-6">
 	<!-- Breadcrumb + title -->
 	<div>
-		<a href="/ulasan" class="font-mono text-xs text-bark/55 hover:text-bark transition-colors">
+		<a
+			href={resolve('/ulasan')}
+			class="font-mono text-xs text-bark/55 hover:text-bark transition-colors"
+		>
 			← Antrian
 		</a>
 		<div class="flex items-start gap-3 mt-2">

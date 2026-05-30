@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { DongengStory } from '$lib/types';
 	import Avatar from './ui/Avatar.svelte';
 	import Chip from './ui/Chip.svelte';
@@ -29,7 +30,10 @@
 	let date = $derived(relativeDate(story.publishedAt));
 </script>
 
-<a href="/cerita/{story.slug}" class="card-hover flex rounded-lg overflow-hidden no-underline">
+<a
+	href={resolve('/cerita/' + story.slug)}
+	class="card-hover flex rounded-lg overflow-hidden no-underline"
+>
 	<div class="relative w-32 h-24 flex-shrink-0 bg-gradient-to-br {gradient}">
 		{#if story.coverUrl}
 			<img

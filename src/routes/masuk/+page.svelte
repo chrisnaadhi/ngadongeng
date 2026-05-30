@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>Masuk — Ngadongeng</title>
 </svelte:head>
@@ -11,41 +15,34 @@
 			</div>
 			<h1 class="heading text-2xl">Masuk ke Ngadongeng</h1>
 			<p class="prose-body text-sm text-bark/60 mt-2">
-				Belum punya akun?
-				<a href="/daftar" class="text-tanah font-semibold hover:underline">Daftar gratis →</a>
+				Masuk dengan Google untuk mulai menyimpan, mengirim, dan membaca cerita.
 			</p>
 		</div>
 
-		<!-- Form -->
-		<form class="card p-6 space-y-4" onsubmit={(e) => e.preventDefault()}>
-			<div class="flex flex-col gap-1.5">
-				<label for="email" class="font-sans text-sm font-medium text-bark">Alamat Email</label>
-				<input
-					id="email"
-					type="email"
-					class="input-base"
-					placeholder="email@kamu.com"
-					required
-					autocomplete="email"
-				/>
+		<div class="card p-6 space-y-6">
+			<p class="prose-body text-sm text-bark/70">
+				Akun kamu akan dibuat otomatis saat pertama kali masuk dengan Google. Tidak perlu kata
+				sandi.
+			</p>
+			<form method="post" action={resolve('/signin')} class="space-y-4">
+				<input type="hidden" name="providerId" value="google" />
+				<button
+					type="submit"
+					class="btn-primary btn-md w-full inline-flex items-center justify-center gap-3"
+				>
+					<i class="i-ph-google-logo text-xl" aria-hidden="true"></i>
+					Masuk dengan Google
+				</button>
+			</form>
+			<p class="prose-body text-xs text-bark/60">
+				Belum punya akun? Cukup masuk sekali dengan Google dan akun akan dibuat otomatis.
+			</p>
+			<div class="text-center">
+				<p class="font-sans text-sm text-bark/70">Atau</p>
+				<a href={resolve('/daftar')} class="text-tanah font-semibold hover:underline"
+					>Gunakan halaman daftar</a
+				>
 			</div>
-			<div class="flex flex-col gap-1.5">
-				<div class="flex justify-between items-center">
-					<label for="password" class="font-sans text-sm font-medium text-bark">Kata Sandi</label>
-					<a href="/lupa-sandi" class="font-sans text-xs text-tanah hover:underline"
-						>Lupa kata sandi?</a
-					>
-				</div>
-				<input
-					id="password"
-					type="password"
-					class="input-base"
-					placeholder="••••••••"
-					required
-					autocomplete="current-password"
-				/>
-			</div>
-			<button type="submit" class="btn-primary btn-md w-full mt-2">Masuk</button>
-		</form>
+		</div>
 	</div>
 </div>

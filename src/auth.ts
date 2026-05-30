@@ -1,9 +1,9 @@
+import { env } from '$env/dynamic/private';
+import * as schema from '$lib/server/db/schema';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import { SvelteKitAuth } from '@auth/sveltekit';
 import Google from '@auth/sveltekit/providers/google';
 import { drizzle } from 'drizzle-orm/d1';
-import { env } from '$env/dynamic/private';
-import * as schema from '$lib/server/db/schema';
 
 /**
  * Auth.js configuration.
@@ -19,6 +19,11 @@ import * as schema from '$lib/server/db/schema';
 export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 	const d1 = event.platform?.env?.DB;
 	const db = d1 ? drizzle(d1, { schema }) : null;
+
+	console.log('[auth] d1 available:', !!d1);
+	console.log('[auth] AUTH_SECRET set:', !!env.AUTH_SECRET);
+	console.log('[auth] GOOGLE_CLIENT_ID set:', !!env.GOOGLE_CLIENT_ID);
+	console.log('[auth] GOOGLE_CLIENT_SECRET set:', !!env.GOOGLE_CLIENT_SECRET);
 
 	return {
 		adapter: db
@@ -39,6 +44,7 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 
 		// Required for Cloudflare — trusts the host header from the Workers runtime
 		trustHost: true,
+		secret: env.AUTH_SECRET,
 
 		callbacks: {
 			// Expose user id and role to the client-side session
@@ -55,6 +61,18 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 		pages: {
 			signIn: '/masuk',
 			error: '/masuk'
+		},
+
+		logger: {
+			error(error) {
+				console.error('[auth:error]', error);
+			},
+			warn(code) {
+				console.warn('[auth:warn]', code);
+			},
+			debug(message, metadata) {
+				console.log('[auth:debug]', message, metadata);
+			}
 		}
 	};
 });

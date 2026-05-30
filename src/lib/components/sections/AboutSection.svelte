@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
 <section class="py-16 bg-parchment/50">
 	<div class="container-md">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -23,7 +27,9 @@
 					</p>
 				</div>
 				<div class="mt-8">
-					<a href="/tentang" class="btn-soft btn-md inline-flex">Kenali Kami Lebih Jauh →</a>
+					<a href={resolve('/tentang')} class="btn-soft btn-md inline-flex"
+						>Kenali Kami Lebih Jauh →</a
+					>
 				</div>
 			</div>
 

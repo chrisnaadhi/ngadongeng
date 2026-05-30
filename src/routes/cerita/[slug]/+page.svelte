@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import AudioPlayer from '$lib/components/AudioPlayer.svelte';
 	import DongengCardHorizontal from '$lib/components/DongengCardHorizontal.svelte';
 	import ReactionBar from '$lib/components/ReactionBar.svelte';
@@ -64,9 +65,9 @@
 				class="flex items-center gap-2 font-mono text-xs text-kulit mb-6"
 				aria-label="Breadcrumb"
 			>
-				<a href="/" class="hover:text-tanah transition-colors">Beranda</a>
+				<a href={resolve('/')} class="hover:text-tanah transition-colors">Beranda</a>
 				<span>/</span>
-				<a href="/cerita" class="hover:text-tanah transition-colors">Cerita</a>
+				<a href={resolve('/cerita')} class="hover:text-tanah transition-colors">Cerita</a>
 				<span>/</span>
 				<span class="text-bark">{story.title}</span>
 			</nav>
@@ -147,7 +148,7 @@
 				<!-- Body text -->
 				{#if story.format === 'teks' && story.bodyText}
 					<div class="prose max-w-none">
-						{#each story.bodyText.split('\n\n') as paragraph}
+						{#each story.bodyText.split('\n\n') as paragraph (paragraph.id)}
 							{#if paragraph.trim()}
 								<p class="prose-body mb-5 text-bark/85">{paragraph.trim()}</p>
 							{/if}
@@ -209,7 +210,7 @@
 					<h2 class="heading text-xl mb-6">Diskusi</h2>
 					<div class="bg-parchment rounded-lg p-6 text-center">
 						<p class="prose-body text-bark/60 mb-4">
-							<a href="/masuk" class="text-tanah font-semibold hover:underline">Masuk</a>
+							<a href={resolve('/masuk')} class="text-tanah font-semibold hover:underline">Masuk</a>
 							untuk ikut berdiskusi →
 						</p>
 					</div>
@@ -238,9 +239,9 @@
 								<div>
 									<dt class="label text-kulit mb-2">Tag</dt>
 									<dd class="flex flex-wrap gap-1.5">
-										{#each story.tags as tag}
+										{#each story.tags as tag (tag.id)}
 											<a
-												href="/cerita?q={encodeURIComponent(tag)}"
+												href={resolve(`/cerita?q=${encodeURIComponent(tag)}`)}
 												class="chip chip-teks text-xs hover:bg-padi/30 transition-colors">{tag}</a
 											>
 										{/each}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 
@@ -67,11 +68,11 @@
 	</div>
 
 	<div class="flex flex-wrap gap-3">
-		<a href="/admin/pengguna" class="btn-primary btn-sm">
+		<a href={resolve('/admin/pengguna')} class="btn-primary btn-sm">
 			<span class="i-ph-users-bold text-sm" aria-hidden="true"></span>
 			Kelola Pengguna
 		</a>
-		<a href="/ulasan" class="btn-secondary btn-sm">
+		<a href={resolve('/ulasan')} class="btn-secondary btn-sm">
 			<span class="i-ph-stack-bold text-sm" aria-hidden="true"></span>
 			Panel Ulasan
 		</a>

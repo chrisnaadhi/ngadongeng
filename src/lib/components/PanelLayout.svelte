@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/stores';
 
 	interface NavItem {
@@ -49,15 +50,27 @@
 				<span class="opacity-30 text-sm mx-1">›</span>
 				<span class="font-display font-semibold text-sm tracking-wide">{title}</span>
 			</div>
-			{#if actionLabel && actionHref}
-				<a
-					href={actionHref}
-					class="hidden sm:inline-flex items-center gap-1.5 bg-padi text-night px-3.5 py-1.5 rounded-lg text-sm font-semibold hover:bg-padi/90 transition-colors"
-				>
-					<span class="i-ph-plus-bold text-xs" aria-hidden="true"></span>
-					{actionLabel}
-				</a>
-			{/if}
+			<div class="flex items-center gap-3">
+				{#if $page.data.session?.user}
+					<form method="post" action={resolve('/signout')} class="inline-flex">
+						<button
+							type="submit"
+							class="bg-white/10 border border-white/20 text-white px-3 py-1.5 rounded-lg text-sm font-semibold hover:bg-white/15 transition-colors"
+						>
+							Keluar
+						</button>
+					</form>
+				{/if}
+				{#if actionLabel && actionHref}
+					<a
+						href={actionHref}
+						class="hidden sm:inline-flex items-center gap-1.5 bg-padi text-night px-3.5 py-1.5 rounded-lg text-sm font-semibold hover:bg-padi/90 transition-colors"
+					>
+						<span class="i-ph-plus-bold text-xs" aria-hidden="true"></span>
+						{actionLabel}
+					</a>
+				{/if}
+			</div>
 		</div>
 	</header>
 

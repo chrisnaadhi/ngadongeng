@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import DongengCard from '$lib/components/DongengCard.svelte';
 	import type { DongengStory } from '$lib/types';
 
@@ -37,7 +38,9 @@
 			Coba ubah kata kunci atau filter pencarian.<br />
 			Atau jadilah yang pertama menambahkan cerita ini!
 		</p>
-		<a href="/cerita/baru" class="btn-primary btn-md inline-flex">Bagikan Cerita →</a>
+		<a href={resolve('/dashboard/cerita/baru')} class="btn-primary btn-md inline-flex"
+			>Bagikan Cerita →</a
+		>
 	</div>
 {:else}
 	<div class="grid {colClass} gap-6">

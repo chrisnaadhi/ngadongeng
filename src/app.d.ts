@@ -16,6 +16,7 @@ declare global {
 		interface Locals {
 			db: DB;
 			session: import('@auth/sveltekit').Session | null;
+			auth: () => Promise<import('@auth/sveltekit').Session | null>;
 		}
 		interface PageData {
 			session?: import('@auth/sveltekit').Session | null;

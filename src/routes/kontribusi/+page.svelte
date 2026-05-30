@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>Cara Berkontribusi — Ngadongeng</title>
 </svelte:head>
@@ -18,7 +22,7 @@
 	<section>
 		<h2 class="heading text-2xl mb-8">Langkah-langkah Berkontribusi</h2>
 		<ol class="space-y-6">
-			{#each [['Buat akun gratis', 'Daftar dengan email. Akun kamu akan langsung aktif setelah verifikasi.'], ['Pilih format cerita', 'Teks, komik, audio, atau video — pilih sesuai kemampuan dan ceritamu.'], ['Isi informasi cerita', 'Judul, kategori, bahasa, wilayah asal cerita, dan sinopsis singkat.'], ['Unggah kontenmu', 'Teks ditulis langsung di editor. Komik, audio, dan video diunggah sebagai file.'], ['Pratinjau dan kirim', 'Cek tampilannya, lalu kirim untuk ditinjau kurator.'], ['Ceritamu tayang', 'Setelah disetujui, ceritamu akan langsung bisa dibaca dan dinikmati semua orang.']] as [title, body], i}
+			{#each [['Buat akun gratis', 'Masuk sekali dengan Google; akun akan dibuat otomatis dan langsung dapat digunakan.'], ['Pilih format cerita', 'Teks, komik, audio, atau video — pilih sesuai kemampuan dan ceritamu.'], ['Isi informasi cerita', 'Judul, kategori, bahasa, wilayah asal cerita, dan sinopsis singkat.'], ['Unggah kontenmu', 'Teks ditulis langsung di editor. Komik, audio, dan video diunggah sebagai file.'], ['Pratinjau dan kirim', 'Cek tampilannya, lalu kirim untuk ditinjau kurator.'], ['Ceritamu tayang', 'Setelah disetujui, ceritamu akan langsung bisa dibaca dan dinikmati semua orang.']] as [title, body], i}
 				<li class="flex gap-5">
 					<div
 						class="w-9 h-9 rounded-full bg-tanah text-cream flex items-center justify-center flex-shrink-0 font-display font-bold text-sm mt-0.5"
@@ -33,7 +37,7 @@
 			{/each}
 		</ol>
 		<div class="mt-10">
-			<a href="/daftar" class="btn-primary btn-md inline-flex">Mulai Sekarang →</a>
+			<a href={resolve('/daftar')} class="btn-primary btn-md inline-flex">Mulai Sekarang →</a>
 		</div>
 	</section>
 

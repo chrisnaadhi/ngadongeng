@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -30,7 +31,7 @@
 			<h1 class="heading text-2xl">Cerita Saya</h1>
 			<p class="label mt-1">{data.stories.length} cerita</p>
 		</div>
-		<a href="/dashboard/cerita/baru" class="btn-primary btn-sm shrink-0">
+		<a href={resolve('/dashboard/cerita/baru')} class="btn-primary btn-sm shrink-0">
 			<span class="i-ph-plus-bold text-xs" aria-hidden="true"></span>
 			Kirim Baru
 		</a>
@@ -45,7 +46,7 @@
 			<p class="prose-body text-sm text-bark/50 mb-6">
 				Bagikan cerita pertamamu dan mulai berkontribusi!
 			</p>
-			<a href="/dashboard/cerita/baru" class="btn-primary btn-md inline-flex">
+			<a href={resolve('/dashboard/cerita/baru')} class="btn-primary btn-md inline-flex">
 				Kirim Cerita Pertamamu
 			</a>
 		</div>
@@ -63,7 +64,7 @@
 						</tr>
 					</thead>
 					<tbody class="divide-y divide-kulit/20">
-						{#each data.stories as story}
+						{#each data.stories as story (story.id)}
 							<tr class="hover:bg-cream/60 transition-colors">
 								<td class="px-4 py-3.5 font-medium text-bark">{story.title}</td>
 								<td class="px-4 py-3.5 text-bark/70 capitalize hidden sm:table-cell"
@@ -80,12 +81,12 @@
 								<td class="px-4 py-3.5 text-right whitespace-nowrap">
 									{#if story.status === 'published'}
 										<a
-											href="/cerita/{story.slug}"
+											href={resolve('/cerita/' + story.slug)}
 											class="font-mono text-xs text-cai hover:underline">Lihat →</a
 										>
 									{:else if story.status === 'draft' || story.status === 'rejected'}
 										<a
-											href="/dashboard/cerita/{story.id}/sunting"
+											href={resolve('/dashboard/cerita/' + story.id + '/sunting')}
 											class="font-mono text-xs text-tanah hover:underline">Edit →</a
 										>
 									{/if}

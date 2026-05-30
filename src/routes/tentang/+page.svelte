@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
 <svelte:head>
 	<title>Tentang Ngadongeng</title>
 </svelte:head>
@@ -62,7 +66,9 @@
 				produksi minimum — yang penting adalah niat untuk menjaga agar cerita itu tidak hilang.
 			</p>
 			<div class="mt-6">
-				<a href="/kontribusi" class="btn-primary btn-md inline-flex">Cara Berkontribusi →</a>
+				<a href={resolve('/kontribusi')} class="btn-primary btn-md inline-flex"
+					>Cara Berkontribusi →</a
+				>
 			</div>
 		</div>
 	</section>

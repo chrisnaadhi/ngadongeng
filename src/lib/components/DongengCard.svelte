@@ -43,7 +43,7 @@
 </script>
 
 <a
-	href="/cerita/{story.slug}"
+	href={resolve('/cerita/' + story.slug)}
 	class="card-hover block rounded-lg overflow-hidden no-underline {story.featured
 		? 'border-l-4 border-padi'
 		: ''}"

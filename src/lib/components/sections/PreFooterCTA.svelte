@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
+
 <section class="py-20 bg-tanah text-cream">
 	<div class="container-md text-center">
 		<p class="font-display italic text-lg text-cream/70 mb-6">
@@ -12,13 +16,13 @@
 		</p>
 		<div class="flex flex-wrap gap-4 justify-center">
 			<a
-				href="/daftar"
+				href={resolve('/daftar')}
 				class="btn-md bg-cream text-tanah hover:bg-parchment hover:-translate-y-px hover:shadow-lg inline-flex items-center gap-2 rounded-md font-sans font-semibold tracking-wide transition-all duration-base"
 			>
 				Buat Akun Gratis
 			</a>
 			<a
-				href="/cerita"
+				href={resolve('/cerita')}
 				class="btn-md bg-transparent text-cream border-2 border-cream/50 hover:border-cream hover:bg-cream/10 inline-flex items-center gap-2 rounded-md font-sans font-semibold tracking-wide transition-all duration-base"
 			>
 				Baca Dulu

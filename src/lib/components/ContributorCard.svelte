@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { Contributor } from '$lib/types';
 	import Avatar from './ui/Avatar.svelte';
 	import Badge from './ui/Badge.svelte';
@@ -10,7 +11,7 @@
 </script>
 
 <a
-	href="/kontributor/{contributor.username}"
+	href={resolve('/kontribusi')}
 	class="card-hover p-5 flex flex-col items-center text-center gap-3 no-underline rounded-lg"
 >
 	<Avatar

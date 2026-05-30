@@ -6,6 +6,6 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "ngadongeng-db"
-# Run `wrangler d1 create ngadongeng-db` then paste the returned id here
-database_id = "YOUR_DATABASE_ID_HERE"
+database_id = "7a543498-96fd-40be-ada8-083b0090919b"
+preview_database_id = "DB"
 migrations_dir = "drizzle/migrations"

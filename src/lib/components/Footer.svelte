@@ -1,3 +1,6 @@
+<script lang="ts">
+</script>
+
 <footer class="bg-bark text-cream/80 font-sans">
 	<div class="container-md py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
 		<!-- Brand column -->
@@ -33,7 +36,7 @@
 		<div>
 			<h3 class="label text-cream/40 mb-4">Tentang</h3>
 			<ul class="space-y-2 text-sm">
-				{#each [['/tentang', 'Tentang Kami'], ['/kontribusi', 'Cara Berkontribusi'], ['/kebijakan', 'Kebijakan Privasi'], ['/kontak', 'Kontak']] as [href, label]}
+				{#each [['/tentang', 'Tentang Kami'], ['/kontribusi', 'Cara Berkontribusi'], ['/kontak', 'Kontak']] as [href, label]}
 					<li>
 						<a {href} class="text-cream/60 hover:text-cream transition-colors no-underline"
 							>{label}</a

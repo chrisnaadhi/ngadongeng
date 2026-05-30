@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import {
 		AboutSection,
 		CategoryShowcase,
@@ -51,11 +52,16 @@
 					Ngadongeng bukan hanya milik TBM Pabukon — ini milik siapa pun yang punya cerita untuk
 					dibagikan. Bergabung dan jadilah bagian dari upaya melestarikan budaya Sunda.
 				</p>
-				<a href="/kontribusi" class="btn-primary btn-md inline-flex mt-2">Cara Berkontribusi →</a>
+				<a href={resolve('/kontribusi')} class="btn-primary btn-md inline-flex mt-2"
+					>Cara Berkontribusi →</a
+				>
 			</div>
 			<div class="flex flex-col gap-3">
 				{#each recentStories.slice(0, 3) as story (story.id)}
-					<a href="/cerita/{story.slug}" class="card-hover flex gap-4 p-4 rounded-lg no-underline">
+					<a
+						href={resolve('/cerita/' + story.slug)}
+						class="card-hover flex gap-4 p-4 rounded-lg no-underline"
+					>
 						<div
 							class="w-14 h-14 rounded-lg bg-parchment flex-shrink-0 flex items-center justify-center"
 						>

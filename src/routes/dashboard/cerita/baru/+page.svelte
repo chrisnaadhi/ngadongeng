@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import type { ActionData, PageData } from './$types';
 
 	let { data, form }: { data: PageData; form: ActionData } = $props();
@@ -228,7 +229,9 @@
 		<div
 			class="panel-card px-5 py-4 flex flex-col-reverse sm:flex-row justify-between items-center gap-3"
 		>
-			<a href="/dashboard" class="btn-soft btn-sm w-full sm:w-auto justify-center"> ← Batal </a>
+			<a href={resolve('/dashboard')} class="btn-soft btn-sm w-full sm:w-auto justify-center">
+				← Batal
+			</a>
 			<div class="flex gap-3 w-full sm:w-auto">
 				<button
 					type="submit"

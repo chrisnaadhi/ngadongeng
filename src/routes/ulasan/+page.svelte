@@ -54,7 +54,7 @@
 								</td>
 								<td class="px-4 py-3.5 text-right">
 									<a
-										href="/ulasan/{story.id}"
+										href={resolve('/ulasan/' + story.id)}
 										class="inline-flex items-center gap-1.5 bg-cai text-cream px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-cai-dark transition-colors"
 									>
 										Tinjau

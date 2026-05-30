@@ -10,7 +10,6 @@ const config = {
 	},
 	kit: {
 		adapter: adapter({
-			// Makes platform.env (D1, KV, etc.) available during `pnpm dev` via wrangler proxy
 			platformProxy: {
 				configPath: 'wrangler.toml',
 				persist: { path: '.wrangler/state/v3' }

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
@@ -46,8 +47,10 @@
 
 		<!-- CTAs -->
 		<div class="flex flex-wrap gap-4 mb-16">
-			<Button variant="primary" size="lg" href="/cerita">Jelajahi Cerita →</Button>
-			<Button variant="secondary" size="lg" href="/cerita/baru">Bagikan Dongengmu</Button>
+			<Button variant="primary" size="lg" href={resolve('/cerita')}>Jelajahi Cerita →</Button>
+			<Button variant="secondary" size="lg" href={resolve('/dashboard/cerita/baru')}
+				>Bagikan Dongengmu</Button
+			>
 		</div>
 
 		<!-- Stats -->

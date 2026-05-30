@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Chip from '$lib/components/ui/Chip.svelte';
 	import type { DongengFormat } from '$lib/types';
 
@@ -54,7 +55,7 @@
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 			{#each categories as cat}
 				<a
-					href="/cerita?format={cat.format}"
+					href={resolve(`/cerita?format=${cat.format}`)}
 					class="card-hover p-6 flex flex-col gap-4 min-h-[180px] relative overflow-hidden no-underline rounded-lg"
 				>
 					<i
