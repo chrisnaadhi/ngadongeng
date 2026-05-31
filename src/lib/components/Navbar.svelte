@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
+	import { base, resolve } from '$app/paths';
 	import { page } from '$app/stores';
 	interface Props {
 		transparent?: boolean;
@@ -22,7 +22,9 @@
 		{ href: '/tentang', label: 'Tentang' }
 	];
 
-	const showDashboardLink = $derived(!!$page.data.session?.user);
+	const showContributorActions = $derived(
+		(($page.data.session?.user as { role?: string } | undefined)?.role ?? 'reader') !== 'reader'
+	);
 	const showAdminLink = $derived(
 		($page.data.session?.user as { role?: string } | undefined)?.role === 'superadmin'
 	);
@@ -46,6 +48,7 @@
 	$effect(() => {
 		const currentPathname = $page.url.pathname;
 		mobileOpen = false;
+		profileOpen = false;
 		return () => {
 			void currentPathname;
 		};
@@ -65,10 +68,12 @@
 			class="flex items-center gap-2 flex-shrink-0 no-underline"
 			aria-label="Ngadongeng — Beranda"
 		>
-			<div class="w-8 h-8 rounded-full bg-tanah flex items-center justify-center flex-shrink-0">
-				<i class="i-ph-book-open text-cream text-sm" aria-hidden="true"></i>
-			</div>
-			<span class="font-display font-bold text-md text-bark">Ngadongeng</span>
+			<img
+				src={`${base}/assets/cropped-headermini.png`}
+				alt="Ngadongeng"
+				class="h-10 w-auto rounded-xl object-contain"
+			/>
+			<span class="sr-only">Ngadongeng</span>
 		</a>
 
 		<!-- Desktop nav -->
@@ -117,27 +122,71 @@
 
 					{#if profileOpen}
 						<div
-							class="absolute right-0 mt-2 w-60 rounded-2xl border border-kulit/30 bg-cream p-3 shadow-2xl ring-1 ring-black/5 z-50"
+							class="absolute right-0 mt-2 w-64 rounded-2xl border border-kulit/30 bg-cream p-4 shadow-2xl ring-1 ring-black/5 z-50"
 						>
-							<a href={resolve('/dashboard')} class="btn-soft btn-sm w-full justify-center mb-2">
-								Dashboard
-							</a>
-							{#if showAdminLink}
-								<a href={resolve('/admin')} class="btn-soft btn-sm w-full justify-center mb-2">
-									Admin
-								</a>
-							{/if}
-							<a
-								href={resolve('/dashboard/cerita/baru')}
-								class="btn-primary btn-sm w-full justify-center mb-2"
-							>
-								Buat Cerita
-							</a>
-							<form method="post" action={resolve('/signout')} class="w-full">
-								<button type="submit" class="btn-soft btn-sm w-full justify-center text-rose">
-									Keluar
-								</button>
-							</form>
+							<div class="mb-3 flex items-center gap-3 border-b border-kulit/10 pb-3">
+								{#if $page.data.session.user.image}
+									<img
+										src={$page.data.session.user.image}
+										alt={$page.data.session.user.name ?? 'Profil'}
+										referrerpolicy="no-referrer"
+										class="w-10 h-10 rounded-full object-cover border border-kulit/40"
+									/>
+								{/if}
+								<div>
+									<p class="font-medium text-bark">{$page.data.session.user.name ?? 'Profil'}</p>
+									<p class="text-xs text-bark/60">Akses cepat</p>
+								</div>
+							</div>
+							<div class="grid gap-2">
+								{#if showContributorActions}
+									<div class="grid grid-cols-2 gap-2">
+										<a
+											href={resolve('/dashboard')}
+											class="btn-soft btn-xs w-full justify-center text-xs leading-none"
+										>
+											Dashboard
+										</a>
+										{#if showAdminLink}
+											<a
+												href={resolve('/admin')}
+												class="btn-soft btn-xs w-full justify-center text-xs leading-none"
+											>
+												Admin
+											</a>
+										{/if}
+									</div>
+									<div class="mt-2 flex gap-2">
+										<a
+											href={resolve('/dashboard/cerita/baru')}
+											class="btn-primary btn-sm flex-1 justify-center py-3"
+										>
+											Buat Cerita
+										</a>
+										<form method="post" action={resolve('/signout')} class="flex-1">
+											<button
+												type="submit"
+												class="btn-soft btn-sm w-full justify-center py-3 text-rose"
+											>
+												Keluar
+											</button>
+										</form>
+									</div>
+								{:else}
+									<div class="text-sm text-bark/70 mb-3">
+										Akun Reader hanya dapat keluar dari sini. Hubungi kami untuk naik ke peran
+										Kontributor.
+									</div>
+									<form method="post" action={resolve('/signout')} class="w-full">
+										<button
+											type="submit"
+											class="btn-soft btn-sm w-full justify-center py-3 text-rose"
+										>
+											Keluar
+										</button>
+									</form>
+								{/if}
+							</div>
 						</div>
 					{/if}
 				</div>
@@ -188,7 +237,7 @@
 					{link.label}
 				</a>
 			{/each}
-			{#if showDashboardLink}
+			{#if showContributorActions}
 				<a
 					href={resolve('/dashboard')}
 					class="font-sans font-medium py-3 px-4 rounded-md transition-colors no-underline
@@ -232,9 +281,11 @@
 			{:else}
 				<a href={resolve('/masuk')} class="btn-soft btn-md w-full text-center">Masuk</a>
 			{/if}
-			<a href={resolve('/dashboard/cerita/baru')} class="btn-primary btn-md w-full text-center"
-				>Bagikan Cerita</a
-			>
+			{#if showContributorActions}
+				<a href={resolve('/dashboard/cerita/baru')} class="btn-primary btn-md w-full text-center"
+					>Bagikan Cerita</a
+				>
+			{/if}
 		</div>
 	</div>
 {/if}

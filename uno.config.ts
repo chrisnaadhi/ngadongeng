@@ -116,13 +116,15 @@ export default defineConfig({
 
 	shortcuts: {
 		// Buttons
-		btn: 'inline-flex items-center justify-center gap-2 font-sans font-semibold tracking-wide rounded-md transition-all duration-base ease-standard cursor-pointer',
+		btn: 'inline-flex items-center justify-center gap-2 font-sans font-semibold tracking-wide rounded-md transition-all duration-base ease-standard cursor-pointer underline-none',
 		'btn-sm': 'btn px-3.5 py-1.5 text-sm',
 		'btn-md': 'btn px-5 py-2.5 text-base',
 		'btn-lg': 'btn px-7 py-3.5 text-md',
-		'btn-primary': 'btn-md bg-tanah text-cream hover:(bg-tanah-dark -translate-y-px shadow-lg)',
-		'btn-secondary': 'btn-md bg-transparent text-cai border-2 border-cai hover:(bg-cai text-cream)',
-		'btn-soft': 'btn-md bg-parchment text-bark border border-kulit hover:bg-kulit',
+		'btn-primary':
+			'btn-md bg-tanah text-cream border border-tanah/40 hover:(bg-tanah-dark -translate-y-px shadow-lg)',
+		'btn-secondary':
+			'btn-md bg-transparent text-cai border border-cai/40 hover:(bg-cai text-cream)',
+		'btn-soft': 'btn-md bg-parchment text-bark border border-kulit/50 hover:bg-kulit',
 
 		// Cards
 		card: 'bg-parchment rounded-lg border border-kulit/40 shadow-sm transition-all duration-base ease-standard',
@@ -180,6 +182,10 @@ export default defineConfig({
           font-family: 'Plus Jakarta Sans', sans-serif;
           -webkit-font-smoothing: antialiased;
         }
+
+				a {
+					text-decoration: none;
+				}
 
         @media (prefers-reduced-motion: reduce) {
           *, *::before, *::after {

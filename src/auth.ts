@@ -20,11 +20,6 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 	const d1 = event.platform?.env?.DB;
 	const db = d1 ? drizzle(d1, { schema }) : null;
 
-	console.log('[auth] d1 available:', !!d1);
-	console.log('[auth] AUTH_SECRET set:', !!env.AUTH_SECRET);
-	console.log('[auth] GOOGLE_CLIENT_ID set:', !!env.GOOGLE_CLIENT_ID);
-	console.log('[auth] GOOGLE_CLIENT_SECRET set:', !!env.GOOGLE_CLIENT_SECRET);
-
 	return {
 		adapter: db
 			? DrizzleAdapter(db, {
@@ -55,6 +50,9 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 					session.user.role = user.role ?? 'reader';
 				}
 				return session;
+			},
+			redirect({ baseUrl }) {
+				return baseUrl;
 			}
 		},
 
@@ -69,9 +67,6 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 			},
 			warn(code) {
 				console.warn('[auth:warn]', code);
-			},
-			debug(message, metadata) {
-				console.log('[auth:debug]', message, metadata);
 			}
 		}
 	};

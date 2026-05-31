@@ -46,12 +46,12 @@
 <div class="flex flex-wrap gap-3 items-center">
 	<!-- Format tabs -->
 	<div class="flex gap-1 bg-parchment p-1 rounded-md" role="tablist" aria-label="Filter format">
-		{#each formats as f}
+		{#each formats as f (f.value)}
 			<button
 				role="tab"
 				aria-selected={local.format === f.value}
 				onclick={() => update('format', f.value)}
-				class="px-3 py-1.5 rounded text-sm font-sans font-medium transition-all duration-fast
+				class="px-3 py-1.5 rounded border border-transparent text-sm font-sans font-medium transition-all duration-fast focus:outline-none focus:ring-2 focus:ring-tanah/20
                {local.format === f.value
 					? 'bg-cream shadow-sm text-bark'
 					: 'text-kulit hover:text-bark'}"
@@ -68,7 +68,7 @@
 		class="input-base max-w-[180px] py-1.5"
 		aria-label="Filter kategori"
 	>
-		{#each categories as c}
+		{#each categories as c (c.value)}
 			<option value={c.value}>{c.label}</option>
 		{/each}
 	</select>
@@ -80,7 +80,7 @@
 		class="input-base max-w-[150px] py-1.5"
 		aria-label="Urutan tampilan"
 	>
-		{#each sorts as s}
+		{#each sorts as s (s.value)}
 			<option value={s.value}>{s.label}</option>
 		{/each}
 	</select>

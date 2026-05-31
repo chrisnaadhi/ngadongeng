@@ -20,6 +20,16 @@
 <div class="container-md max-w-3xl py-16 space-y-16">
 	<!-- Steps -->
 	<section>
+		<div class="rounded-xl border border-kulit/20 bg-cream p-5 mb-8">
+			<p class="font-medium text-bark mb-2">Penting</p>
+			<p class="prose-body text-sm text-bark/80">
+				Semua pengguna baru yang login pertama kali akan mendapatkan peran default <strong
+					>Reader</strong
+				>. Untuk mendapatkan akses mengirim cerita, hubungi tim kami agar akun Anda dapat dikonversi
+				menjadi
+				<strong>Kontributor</strong>.
+			</p>
+		</div>
 		<h2 class="heading text-2xl mb-8">Langkah-langkah Berkontribusi</h2>
 		<ol class="space-y-6">
 			{#each [['Buat akun gratis', 'Masuk sekali dengan Google; akun akan dibuat otomatis dan langsung dapat digunakan.'], ['Pilih format cerita', 'Teks, komik, audio, atau video — pilih sesuai kemampuan dan ceritamu.'], ['Isi informasi cerita', 'Judul, kategori, bahasa, wilayah asal cerita, dan sinopsis singkat.'], ['Unggah kontenmu', 'Teks ditulis langsung di editor. Komik, audio, dan video diunggah sebagai file.'], ['Pratinjau dan kirim', 'Cek tampilannya, lalu kirim untuk ditinjau kurator.'], ['Ceritamu tayang', 'Setelah disetujui, ceritamu akan langsung bisa dibaca dan dinikmati semua orang.']] as [title, body], i}

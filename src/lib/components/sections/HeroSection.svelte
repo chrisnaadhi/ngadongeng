@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
+	import { base, resolve } from '$app/paths';
 	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
@@ -53,7 +53,39 @@
 			>
 		</div>
 
-		<!-- Stats -->
+		<!-- Brand visual -->
+		<div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] items-start">
+			<div>
+				<!-- Stats -->
+				<div class="flex flex-wrap gap-8 md:gap-12 border-t border-kulit/30 pt-8">
+					<div>
+						<p class="font-display font-bold text-3xl text-tanah">{totalCerita}+</p>
+						<p class="label mt-1">Dongeng</p>
+					</div>
+					<div>
+						<p class="font-display font-bold text-3xl text-tanah">{totalKontributor}+</p>
+						<p class="label mt-1">Kontributor</p>
+					</div>
+					<div>
+						<p class="font-display font-bold text-3xl text-tanah">{totalKegiatan}+</p>
+						<p class="label mt-1">Kegiatan Mendongeng</p>
+					</div>
+					<div>
+						<p class="font-display font-bold text-3xl text-tanah">{tahunBerjalan}</p>
+						<p class="label mt-1">Tahun Berjalan</p>
+					</div>
+				</div>
+			</div>
+			<div class="hidden lg:flex justify-end">
+				<div class="rounded-[2rem] border border-kulit/20 bg-cream p-6 shadow-2xl">
+					<img
+						src={`${base}/assets/cropped-headermini.png`}
+						alt="Logo Ngadongeng"
+						class="w-72 h-auto object-contain"
+					/>
+				</div>
+			</div>
+		</div>
 		<div class="flex flex-wrap gap-8 md:gap-12 border-t border-kulit/30 pt-8">
 			<div>
 				<p class="font-display font-bold text-3xl text-tanah">{totalCerita}+</p>
