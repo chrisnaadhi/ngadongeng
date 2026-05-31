@@ -5,7 +5,14 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	if (!locals.db) {
-		return { featuredStories: [], recentStories: [], stats: null };
+		return {
+			featuredStories: [],
+			recentStories: [],
+			stats: {
+				storyCount: 0,
+				contributorCount: 0
+			}
+		};
 	}
 
 	const db = locals.db;
