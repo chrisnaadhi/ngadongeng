@@ -14,7 +14,7 @@
 		"format": "prettier --write .",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate:local": "wrangler d1 migrations apply ngadongeng-db --local",
-		"db:migrate:prod": "wrangler d1 migrations apply ngadongeng-db",
+		"db:migrate:prod": "wrangler d1 migrations apply ngadongeng-db --remote",
 		"db:studio": "drizzle-kit studio",
 		"cf:deploy": "pnpm build && wrangler pages deploy"
 	},
