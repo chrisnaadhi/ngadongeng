@@ -39,6 +39,10 @@ export const { handle, signIn, signOut } = SvelteKitAuth(async (event) => {
 
 		// Required for Cloudflare — trusts the host header from the Workers runtime
 		trustHost: true,
+		// Must be an explicit string; @auth/core 0.41.x resolves basePath to a
+		// non-string in the Cloudflare Workers environment, causing
+		// `basePath?.replace is not a function` at runtime.
+		basePath: '/auth',
 		secret: env.AUTH_SECRET,
 
 		callbacks: {
